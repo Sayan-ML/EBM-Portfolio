@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayan | Biostatistician</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f1d35; --navy-light: #1a2f52; --teal: #1d9e75; --teal-light: #5DCAA5;
+    --sand: #f5f2eb; --sand-dark: #e8e4d9; --text: #1a1a2e; --muted: #5a6478;
+    --white: #ffffff; --accent: #d85a30;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { background: var(--navy); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'Playfair Display', serif; color: var(--white); font-size: 18px; }
+  .nav-logo span { color: #5DCAA5; font-style: italic; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: #5DCAA5; }
+
+  /* HERO */
+  .hero { background: var(--navy); min-height: 540px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 80px 48px; gap: 64px; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; right: -80px; top: -80px; width: 420px; height: 420px; border-radius: 50%; border: 1px solid rgba(29,158,117,0.2); }
+  .hero::before { content: ''; position: absolute; right: 20px; top: 20px; width: 280px; height: 280px; border-radius: 50%; border: 1px solid rgba(29,158,117,0.12); }
+  .hero-tag { display: inline-block; background: rgba(29,158,117,0.15); color: #5DCAA5; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; border: 0.5px solid rgba(93,202,165,0.3); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; color: var(--white); line-height: 1.15; margin-bottom: 8px; }
+  .hero h1 em { color: #5DCAA5; font-style: italic; }
+  .hero-role { color: rgba(255,255,255,0.5); font-size: 14px; font-weight: 300; letter-spacing: 0.04em; margin-bottom: 24px; text-transform: uppercase; }
+  .hero p { color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.75; max-width: 400px; margin-bottom: 36px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { background: var(--teal); color: var(--white); padding: 12px 28px; border-radius: 4px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; }
+  .btn-primary:hover { background: #0f6e56; }
+  .btn-outline { background: transparent; color: var(--white); padding: 12px 28px; border-radius: 4px; font-size: 13px; font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+  .hero-visual { display: flex; flex-direction: column; gap: 16px; z-index: 1; }
+  .stat-card { background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px 22px; }
+  .stat-card-label { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .stat-card-value { font-family: 'Playfair Display', serif; font-size: 32px; color: #5DCAA5; font-weight: 600; }
+  .stat-card-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stat-card.sm .stat-card-value { font-size: 22px; }
+
+  /* SECTIONS */
+  section { padding: 80px 48px; }
+  .section-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: 40px; }
+  .section-title em { font-style: italic; color: var(--teal); }
+
+  /* ABOUT */
+  .about { background: var(--sand); display: grid; grid-template-columns: 2fr 3fr; gap: 64px; align-items: start; }
+  .about-avatar { width: 260px; height: 260px; border-radius: 50%; background: var(--navy-light); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; overflow: hidden; }  .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar-placeholder { font-family: 'Playfair Display', serif; font-size: 64px; color: rgba(255,255,255,0.2); }
+  .about-contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .contact-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+  .contact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+  .about-right p { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 20px; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .skill-tag { background: var(--white); border: 0.5px solid var(--sand-dark); color: var(--text); font-size: 12px; padding: 6px 14px; border-radius: 20px; }
+  .skill-tag.highlight { background: rgba(29,158,117,0.08); border-color: rgba(29,158,117,0.3); color: var(--teal); }
+
+  /* EDUCATION */
+  .education { background: var(--white); }
+  .edu-timeline { position: relative; padding-left: 32px; }
+  .edu-timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--teal), rgba(29,158,117,0.1)); }
+  .edu-item { position: relative; margin-bottom: 48px; }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-dot { position: absolute; left: -29px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--white); border: 2px solid var(--teal); z-index: 1; }
+  .edu-item.current .edu-dot { background: var(--teal); box-shadow: 0 0 0 4px rgba(29,158,117,0.15); }
+  .edu-card { background: var(--sand); border: 0.5px solid var(--sand-dark); border-radius: 10px; padding: 28px 28px 24px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start; transition: border-color 0.2s; }
+  .edu-card:hover { border-color: #5DCAA5; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .edu-institution { font-size: 14px; font-weight: 500; color: var(--teal); margin-bottom: 4px; }
+  .edu-location { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  .edu-details { display: flex; flex-direction: column; gap: 6px; }
+  .edu-detail-item { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+  .edu-detail-item::before { content: '—'; color: #5DCAA5; flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+  .edu-meta { text-align: right; flex-shrink: 0; }
+  .edu-year { font-size: 13px; font-weight: 500; color: var(--navy); background: var(--white); border: 0.5px solid var(--sand-dark); padding: 4px 12px; border-radius: 20px; white-space: nowrap; margin-bottom: 8px; display: inline-block; }
+  .edu-badge { font-size: 11px; font-weight: 500; color: var(--teal); background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.25); padding: 4px 10px; border-radius: 20px; display: inline-block; white-space: nowrap; }
+  .edu-badge.ongoing { color: var(--accent); background: rgba(216,90,48,0.08); border-color: rgba(216,90,48,0.25); }
+
+  /* RESEARCH */
+  .research { background: var(--sand); }
+  .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .research-card { border: 0.5px solid #e0ddd4; border-radius: 10px; padding: 28px 24px; background: var(--white); position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .research-card:hover { border-color: #5DCAA5; transform: translateY(-3px); }
+  .research-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--teal); border-radius: 10px 10px 0 0; }
+  .research-card.coral::before { background: var(--accent); }
+  .research-card.navy::before { background: var(--navy); }
+  .research-type { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .research-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 12px; }
+  .research-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+  .research-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .research-tag { font-size: 11px; background: var(--sand); color: var(--muted); padding: 3px 10px; border-radius: 10px; }
+
+  /* EXPERTISE */
+  .expertise { background: var(--navy); }
+  .expertise .section-title { color: var(--white); }
+  .expertise .section-title em { color: #5DCAA5; }
+  .expertise .section-eyebrow { color: #5DCAA5; }
+  .expertise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
+  .expertise-item { background: var(--navy); padding: 28px 22px; }
+  .expertise-icon { width: 36px; height: 36px; background: rgba(29,158,117,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .expertise-icon svg { width: 18px; height: 18px; stroke: #5DCAA5; fill: none; stroke-width: 1.5; }
+  .expertise-name { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+  .expertise-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-section { background: var(--sand); text-align: center; }
+  .contact-section .section-title { margin-bottom: 16px; }
+  .contact-section > p { font-size: 15px; color: var(--muted); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 8px; background: var(--white); border: 0.5px solid var(--sand-dark); color: var(--text); font-size: 13px; font-weight: 500; padding: 12px 24px; border-radius: 6px; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .contact-link:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* FOOTER */
+  footer { background: var(--navy); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 40px; }
+    .hero h1 { font-size: 36px; }
+    .about { grid-template-columns: 1fr; padding: 48px 20px; gap: 32px; }
+    .about-avatar { aspect-ratio: 1/1; max-width: 200px; }
+    section { padding: 60px 20px; }
+    .research-grid { grid-template-columns: 1fr; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .edu-card { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+  <div class="nav-logo">Sayan<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#research">Research</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Associate Biostatistician · Evidence Synthesis</div>
+    <h1>Turning <em>evidence</em><br>into insight</h1>
+    <div class="hero-role">EBM Health · Varanasi, India</div>
+    <p>Bridging statistical rigour and real-world health data to support evidence-based clinical decisions through meta-analysis, systematic reviews, and advanced biostatistical modelling.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#research">View Research</a>
+      <!-- Replace # with your actual CV file link -->
+      <a class="btn-outline" href="Sayan_Banerjee_EBM_Resume (1).pdf" download>Download CV</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-card">
+      <div class="stat-card-label">Statistical Focus</div>
+      <div class="stat-card-value">Evidence<br>Synthesis</div>
+      <div class="stat-card-sub">Meta-analysis · Systematic Review · Network MA</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card sm">
+        <div class="stat-card-label">Methods</div>
+        <div class="stat-card-value">Bayesian</div>
+        <div class="stat-card-sub">& Frequentist</div>
+      </div>
+      <div class="stat-card sm">
+        <div class="stat-card-label">Primary tools</div>
+        <div class="stat-card-value">R · SAS</div>
+        <div class="stat-card-sub">Stan · RevMan</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="about-avatar">
+      <img src="19618dd0-b1a3-44a1-9115-8a1e2ef6b5e2-modified (1).png" alt="Sayan">
+    </div>
+    <div class="about-contact-list">
+      <div class="contact-item"><div class="contact-dot"></div>EBM Health, India</div>
+      <!-- Replace with your actual email -->
+      <div class="contact-item"><div class="contact-dot"></div>sayan.banerjee1221@gmail.com</div>
+      <!-- Replace with your actual LinkedIn -->
+      <div class="contact-item"><div class="contact-dot"></div><a href="https://www.linkedin.com/in/sayan-banerjee-0222a4214/" target="_blank" style="color: inherit; text-decoration: none;">Linkeldn</a></div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="section-eyebrow">About me</div>
+    <div class="section-title" style="margin-bottom: 20px;">Statistical thinking,<br><em>clinically grounded</em></div>
+    <p>I'm an Associate Biostatistician at EBM Health, specialising in evidence synthesis — conducting systematic reviews, meta-analyses, and network meta-analyses that inform clinical guidelines and health technology assessments.</p>
+    <p>My academic background spans Bayesian inference, generalised linear models, longitudinal data analysis, and simulation methods. I translate complex statistical frameworks into actionable insights for researchers and clinicians.</p>
+    <div class="skills-grid">
+      <span class="skill-tag highlight">Meta-analysis</span>
+      <span class="skill-tag highlight">Network MA</span>
+      <span class="skill-tag highlight">Bayesian Inference</span>
+      <span class="skill-tag">GLMs · Regression</span>
+      <span class="skill-tag">Longitudinal Data</span>
+      <span class="skill-tag">IRLS</span>
+      <span class="skill-tag">R · Stan · SAS</span>
+      <span class="skill-tag">RevMan · STATA</span>
+      <span class="skill-tag">GRADE framework</span>
+      <span class="skill-tag">HTA Submissions</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EDUCATION ========== -->
+<section class="education" id="education">
+  <div class="section-eyebrow">Academic background</div>
+  <div class="section-title">Education &amp; <em>training</em></div>
+  <div class="edu-timeline">
+
+    <div class="edu-item current">
+      <div class="edu-dot"></div>
+      <div class="edu-card">
+        <div>
+          <!-- EDIT: Change degree, university, city, years, details below -->
+          <div class="edu-degree">M.Sc. Statistics</div>
+          <div class="edu-institution">Banaras Hindu University</div>
+          <div class="edu-location">Varanasi , UP , India</div>
+          <div class="edu-details">
+            <div class="edu-detail-item">Specialisation in Biostatistics and Applied Probability</div>
+            <div class="edu-detail-item">Advanced coursework: Bayesian Inference, GLMs, Longitudinal Data Analysis, Simulation Methods</div>
+            <div class="edu-detail-item">Dissertation: Unveiling Survival Dynamics in Heart Failure Patients: A Comprehensive Time-to-Event Analysis</div>
+            <div class="edu-detail-item">CGPA: 8.80 / 10</div>
+          </div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-year">2024 – 2026</div><br>
+          <span class="edu-badge ongoing">Ongoing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">B.Sc. Statistics (Hons.)</div>
+          <div class="edu-institution">Sister Nivedita University</div>
+          <div class="edu-location">Kolkata , WB , India</div>
+          <div class="edu-details">
+            <div class="edu-detail-item">Core subjects: Mathematical Statistics, Probability Theory, Regression Analysis, Sampling Methods</div>
+            <div class="edu-detail-item">Final year project: Comparison of Different methods of combining P-values using
+Simulation Study</div>
+            <div class="edu-detail-item">CGPA: 8.51 / 10</div>
+          </div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-year">2021 – 2024</div><br>
+          <span class="edu-badge">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot"></div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Certifications &amp; Training</div>
+          <div class="edu-institution">Professional Development</div>
+          <div class="edu-location">Online / In-person</div>
+          <div class="edu-details">
+            <div class="edu-detail-item">Systematic Reviews &amp; Meta-analysis — [Platform / Institution]</div>
+            <div class="edu-detail-item">Bayesian Data Analysis with R &amp; Stan — [Platform]</div>
+            <div class="edu-detail-item">Good Clinical Practice (GCP) — [Issuing body]</div>
+          </div>
+        </div>
+        <div class="edu-meta">
+          <div class="edu-year">2021 – 2024</div><br>
+          <span class="edu-badge">Certified</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== RESEARCH ========== -->
+<section class="research" id="research">
+  <div class="section-eyebrow">Research &amp; Projects</div>
+  <div class="section-title">Selected <em>work</em></div>
+  <div class="research-grid">
+    <!-- EDIT: Add your real projects here -->
+    <div class="research-card" onclick="window.open('https://www.linkedin.com/in/sayan-banerjee-0222a4214/','_blank')" style="cursor:pointer;">
+      <div class="research-type">Network Meta-analysis</div>
+      <div class="research-title">Comparative Efficacy of Interventions in Chronic Disease Management</div>
+      <div class="research-desc">A Bayesian network meta-analysis comparing 12 treatment nodes across RCTs, producing treatment rankings with SUCRA scores.</div>
+      <div class="research-tags">
+        <span class="research-tag">Bayesian NMA</span>
+        <span class="research-tag">R · gemtc</span>
+        <span class="research-tag">GRADE</span>
+      </div>
+    </div>
+    <div class="research-card coral" onclick="window.open('https://www.linkedin.com/in/sayan-banerjee-0222a4214/','_blank')" style="cursor:pointer;">
+      <div class="research-type">Systematic Review</div>
+      <div class="research-title">Heterogeneity Assessment in Observational Evidence Pools</div>
+      <div class="research-desc">Developed a sensitivity analysis framework for assessing between-study heterogeneity using I² and τ² decomposition.</div>
+      <div class="research-tags">
+        <span class="research-tag">Random Effects</span>
+        <span class="research-tag">RevMan · R</span>
+        <span class="research-tag">Forest plots</span>
+      </div>
+    </div>
+    <div class="research-card navy" onclick="window.open('https://www.linkedin.com/in/sayan-banerjee-0222a4214/','_blank')" style="cursor:pointer;">
+      <div class="research-type">Biostatistical Modelling</div>
+      <div class="research-title">Poisson &amp; Logistic GLM Diagnostics in Clinical Outcomes Data</div>
+      <div class="research-desc">Applied IRLS, leverage analysis, Cook's Distance, and DFBETAS to evaluate model fit in multi-site clinical registry data.</div>
+      <div class="research-tags">
+        <span class="research-tag">GLMs · IRLS</span>
+        <span class="research-tag">R</span>
+        <span class="research-tag">Residual Diagnostics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXPERTISE ========== -->
+<section class="expertise" id="expertise">
+  <div class="section-eyebrow">Core expertise</div>
+  <div class="section-title">What I <em>bring</em></div>
+  <div class="expertise-grid">
+    <div class="expertise-item">
+      <div class="expertise-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="expertise-name">Evidence Synthesis</div>
+      <div class="expertise-desc">Systematic reviews, pairwise &amp; network meta-analysis, heterogeneity assessment, GRADE certainty evaluation.</div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div class="expertise-name">Bayesian Methods</div>
+      <div class="expertise-desc">Prior elicitation, posterior derivation, credible intervals, conjugate models (Poisson-Gamma, Normal-Normal).</div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="expertise-name">Regression &amp; GLMs</div>
+      <div class="expertise-desc">Logistic, Poisson, longitudinal models; IRLS; influence diagnostics; Cook's D, DFBETAS, DFFITS.</div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+      </div>
+      <div class="expertise-name">Statistical Software</div>
+      <div class="expertise-desc">R (primary), Stan, SAS, Stata, RevMan, ADDIS. Reproducible workflows with R Markdown &amp; Quarto.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact-section" id="contact">
+  <div class="section-eyebrow">Get in touch</div>
+  <div class="section-title">Let's <em>collaborate</em></div>
+  <p>Open to research collaborations, HTA consulting, and statistical consultancy in evidence synthesis and clinical biostatistics.</p>
+
+  <form action="https://formspree.io/f/xwvyvbdk" method="POST" style="max-width: 560px; margin: 0 auto 40px; text-align: left;">
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; font-size: 13px; font-weight: 500; color: #5a6478; margin-bottom: 6px;">Your Name</label>
+      <input type="text" name="name" required placeholder="John Smith"
+        style="width: 100%; padding: 12px 16px; border: 0.5px solid #e8e4d9; border-radius: 6px; font-size: 14px; font-family: inherit; background: #fff; outline: none;">
+    </div>
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; font-size: 13px; font-weight: 500; color: #5a6478; margin-bottom: 6px;">Your Email</label>
+      <input type="email" name="email" required placeholder="john@example.com"
+        style="width: 100%; padding: 12px 16px; border: 0.5px solid #e8e4d9; border-radius: 6px; font-size: 14px; font-family: inherit; background: #fff; outline: none;">
+    </div>
+    <div style="margin-bottom: 24px;">
+      <label style="display: block; font-size: 13px; font-weight: 500; color: #5a6478; margin-bottom: 6px;">Message</label>
+      <textarea name="message" required placeholder="Tell me about your project or collaboration idea..." rows="5"
+        style="width: 100%; padding: 12px 16px; border: 0.5px solid #e8e4d9; border-radius: 6px; font-size: 14px; font-family: inherit; background: #fff; outline: none; resize: vertical;"></textarea>
+    </div>
+    <button type="submit"
+      style="width: 100%; background: #1d9e75; color: white; padding: 14px; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; font-family: inherit; cursor: pointer; letter-spacing: 0.04em;">
+      Send Message
+    </button>
+  </form>
+
+  <div class="contact-links">
+    <a class="contact-link" href="https://mail.google.com/mail/?view=cm&to=sayan.banerjee1221@gmail.com" target="_blank">✉ Email me</a>
+    <a class="contact-link" href="https://www.linkedin.com/in/sayan-banerjee-0222a4214/" target="_blank">in LinkedIn</a>
+    <a class="contact-link" href="https://scholar.google.com" target="_blank">↗ Google Scholar</a>
+    <a class="contact-link" href="Sayan_Banerjee_EBM_Resume (1).pdf" download>⬇ Download CV</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <p>© 2026 Sayan · Associate Biostatistician, EBM Health</p>
+  <p>Built with evidence &amp; care</p>
+</footer>
+
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(e) {
+    setTimeout(function() {
+      form.reset();
+    }, 500);
+  });
+</script>
+</body>
+</html>
